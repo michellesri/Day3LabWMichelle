@@ -25,6 +25,7 @@ articleView.populateFilters = function() {
     }
   });
 };
+articleView.populateFilters();
 
 articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
@@ -32,6 +33,10 @@ articleView.handleAuthorFilter = function() {
       // TODO: If the select box was changed to an option that has a value, we need to hide all the articles,
       //       and then show just the ones that match for the author that was selected.
       //       Use an "attribute selector" to find those articles, and fade them in for the reader.
+      var thisVal = $(this).val();
+      var authorData = $('[data-author="' + thisVal + '"]');
+      $('article').not(authorData).hide();
+      console.log('hooray: ' , authorData);
 
     } else {
       // TODO: If the select box was changed to an option that is blank, we should
@@ -41,6 +46,7 @@ articleView.handleAuthorFilter = function() {
     $('#category-filter').val('');
   });
 };
+articleView.handleAuthorFilter();
 
 articleView.handleCategoryFilter = function() {
   // TODO: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
